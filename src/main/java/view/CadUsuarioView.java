@@ -1,2 +1,4 @@
-package view;public class CadUsuarioView {
+package view;
+
+public class CadUsuarioView {
 }

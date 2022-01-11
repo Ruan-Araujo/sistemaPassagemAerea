@@ -1,4 +1,4 @@
-package view;
+package service;
 
-public class CadUsuario {
+public class CadUsuarioService {
 }

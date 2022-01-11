@@ -1,2 +1,4 @@
-package view;public class RotasView {
+package view;
+
+public class RotasView {
 }
