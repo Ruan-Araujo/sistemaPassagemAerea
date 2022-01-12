@@ -8,7 +8,7 @@ public class Users {
     private Integer id;
     private String nome;
     private String cpf;
-    List<Reserva> listaReservas = new ArrayList<>();
+    List<Integer> reservasId = new ArrayList<>();
 
     public Users(){}
 
@@ -28,6 +28,14 @@ public class Users {
 
     public String getCpf() {
         return cpf;
+    }
+
+    public List<Integer> getReservasId() {
+        return reservasId;
+    }
+
+    public void setReservasId(List<Integer> reservasId) {
+        this.reservasId = reservasId;
     }
 
     @Override

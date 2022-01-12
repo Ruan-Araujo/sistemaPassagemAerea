@@ -14,4 +14,20 @@ public class Reserva {
         this.metodoPagamento = metodoPagamento;
         this.totalDePassagens = totalDePassagens;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Rotas getRota() {
+        return rota;
+    }
+
+    public String getMetodoPagamento() {
+        return metodoPagamento;
+    }
+
+    public Integer getTotalDePassagens() {
+        return totalDePassagens;
+    }
 }
