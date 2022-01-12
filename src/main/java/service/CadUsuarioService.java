@@ -5,7 +5,7 @@ import repository.Reader;
 
 public class CadUsuarioService {
 
-    private Reader reader;
+    private Reader reader = new Reader();
 
     public void cadastrarUsuario(Users user) {
         if (validarUsuario(user)) {
