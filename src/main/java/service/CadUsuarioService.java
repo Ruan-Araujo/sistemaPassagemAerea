@@ -1,24 +1,31 @@
 package service;
 
 import model.Users;
-
-import java.util.ArrayList;
-import java.util.List;
+import repository.Reader;
 
 public class CadUsuarioService {
 
-    List<Users> listaUsuarios = new ArrayList<>();
-
+    private Reader reader;
 
     public void cadastrarUsuario(Users user) {
-        listaUsuarios.add(user);
+        if (validarUsuario(user)) {
+            System.out.println("Usuário já cadastrado");
+        } else {
+            reader.adicionarUsuarios(user);
+        }
     }
 
-    public void validarUsuario(Users user) {
-        listaUsuarios.forEach(users -> {
-            if (users.equals(user)) {
-                System.out.println("Usuário " + user + "já está cadastrado");
+
+    public boolean validarUsuario(Users user) {
+        boolean usuarioJaCadastrado = false;
+
+        for (Users usuarios : reader.listarUsuarios()) {
+            if (user.equals(usuarios)) {
+                usuarioJaCadastrado = true;
+                break;
             }
-        });
+        }
+
+        return usuarioJaCadastrado;
     }
 }

@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Users {
 
@@ -36,6 +37,19 @@ public class Users {
 
     public void setReservasId(List<Integer> reservasId) {
         this.reservasId = reservasId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Users users = (Users) o;
+        return Objects.equals(cpf, users.cpf);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cpf);
     }
 
     @Override

@@ -33,6 +33,7 @@ public class Reader {
                                              .collect(Collectors.toList());
                 users.setReservasId(idReservas);
                 usersList.add(users);
+                user = br.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -76,6 +77,7 @@ public class Reader {
                 LocalDate dataDeVolta = LocalDate.parse(dados[4]);
                 Rotas rotas = new Rotas(id, nome, valor, dataDeIda, dataDeVolta);
                 rotasList.add(rotas);
+                rota = br.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -100,6 +102,7 @@ public class Reader {
                 Integer totalDePassagens = Integer.parseInt(dados[3]);
                 Reserva reservas = new Reserva(id, rota, metodoPagamento, totalDePassagens);
                 reservasList.add(reservas);
+                reserva = br.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
