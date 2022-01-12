@@ -18,5 +18,5 @@ public class Rotas {
         this.dataDeIda = dataDeIda;
         this.dataDeVolta = dataDeVolta;
     }
-
+    
 }

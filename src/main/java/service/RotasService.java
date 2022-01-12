@@ -12,5 +12,4 @@ public class RotasService {
     public void cadastrarRota(Rotas rota) {
         listaRotas.add(rota);
     }
-
 }

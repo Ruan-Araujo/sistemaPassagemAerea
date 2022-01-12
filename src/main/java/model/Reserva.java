@@ -13,7 +13,4 @@ public class Reserva {
         this.metodoPagamento = metodoPagamento;
         this.totalDePassagens = totalDePassagens;
     }
-
-
-
 }
