@@ -19,7 +19,4 @@ public class Rotas {
         this.dataDeVolta = dataDeVolta;
     }
 
-
-
-
 }
