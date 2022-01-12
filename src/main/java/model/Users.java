@@ -18,6 +18,18 @@ public class Users {
         this.cpf = cpf;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
     @Override
     public String toString() {
         return  "[ " + nome +  cpf + "]";

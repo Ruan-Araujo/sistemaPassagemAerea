@@ -1,7 +1,6 @@
 package model;
 
 public class Reserva {
-
     private Integer id;
     private Rotas rota;
     private String metodoPagamento;
