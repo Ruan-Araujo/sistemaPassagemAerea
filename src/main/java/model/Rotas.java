@@ -29,4 +29,9 @@ public class Rotas {
     public String getNome() {
         return nome;
     }
+
+    @Override
+    public String toString() {
+        return "["+ id + "," + nome + ", " + valor + ", " + dataDeIda + ", "+ dataDeVolta;
+    }
 }
