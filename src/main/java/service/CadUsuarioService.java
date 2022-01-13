@@ -1,17 +1,16 @@
 package service;
 
 import model.Users;
-import repository.Reader;
+import repository.UsuarioDAO;
 
 public class CadUsuarioService {
-
-    private Reader reader;
+    private UsuarioDAO dao = new UsuarioDAO();
 
     public void cadastrarUsuario(Users user) {
         if (validarUsuario(user)) {
             System.out.println("Usuário já cadastrado");
         } else {
-            reader.adicionarUsuarios(user);
+            dao.adicionarUsuarios(user);
         }
     }
 
@@ -19,7 +18,7 @@ public class CadUsuarioService {
     public boolean validarUsuario(Users user) {
         boolean usuarioJaCadastrado = false;
 
-        for (Users usuarios : reader.listarUsuarios()) {
+        for (Users usuarios : dao.listarUsuarios()) {
             if (user.equals(usuarios)) {
                 usuarioJaCadastrado = true;
                 break;
