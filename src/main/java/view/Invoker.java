@@ -19,6 +19,7 @@ public class Invoker {
     public static void invoke(int command){
         try {
             Command c = (Command) comandos.get(command).getDeclaredConstructor().newInstance();
+            c.execute();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
         }

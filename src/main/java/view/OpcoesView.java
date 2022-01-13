@@ -21,9 +21,8 @@ public class OpcoesView {
             System.out.println("Finalizando!");
         }else{
             Invoker.invoke(opcao);
+            System.out.println();
             listaOpcoes();
         }
     }
-
-
 }
