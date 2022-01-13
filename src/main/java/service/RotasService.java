@@ -6,7 +6,12 @@ import repository.RotasDAO;
 import java.util.List;
 
 public class RotasService{
-    private RotasDAO dao = new RotasDAO();
+
+    private RotasDAO dao;
+
+    public RotasService() {
+        this.dao = new RotasDAO();
+    }
 
     public List<Rotas> listarRotas(){
         return dao.listarRotas();

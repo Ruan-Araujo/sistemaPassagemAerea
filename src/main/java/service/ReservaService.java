@@ -8,7 +8,12 @@ import repository.ReservasDAO;
 import java.util.List;
 
 public class ReservaService {
-    private ReservasDAO dao = DAOSingleton.INSTANCE.getReservasDAO();
+
+    private ReservasDAO dao;
+
+    public ReservaService() {
+        this.dao = DAOSingleton.INSTANCE.getReservasDAO();
+    }
 
     public List<Reserva> listarReserva(){
         return dao.listarReservas();

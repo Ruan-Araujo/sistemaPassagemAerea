@@ -6,9 +6,14 @@ import repository.UsuarioDAO;
 import java.util.List;
 
 public class UsuarioService {
-        private UsuarioDAO dao = new UsuarioDAO();
 
-        public List<Users> listarUsuarios(){
+    private UsuarioDAO dao;
+
+    public UsuarioService(UsuarioDAO dao) {
+        this.dao = new UsuarioDAO();
+    }
+
+    public List<Users> listarUsuarios(){
             return dao.listarUsuarios();
         }
 

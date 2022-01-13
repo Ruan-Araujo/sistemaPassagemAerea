@@ -4,7 +4,12 @@ import model.Users;
 import repository.UsuarioDAO;
 
 public class CadUsuarioService {
-    private UsuarioDAO dao = new UsuarioDAO();
+
+    private UsuarioDAO dao;
+
+    public CadUsuarioService() {
+        this.dao = new UsuarioDAO();
+    }
 
     public void cadastrarUsuario(Users user) {
         if (validarUsuario(user)) {

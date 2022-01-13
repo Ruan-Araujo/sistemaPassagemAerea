@@ -1,20 +1,26 @@
 package service;
 
 import model.Reserva;
-import repository.Reader;
+import repository.DAOSingleton;
+import repository.ReservasDAO;
+
 
 public class CadReservaService {
 
-    private Reader reader = new Reader();
+    private ReservasDAO dao;
+
+    public CadReservaService() {
+        this.dao = DAOSingleton.INSTANCE.getReservasDAO();
+    }
 
     public void realizarReserva(Reserva reserva) {
-        reader.adicionarReserva(reserva);
+        dao.adicionarReserva(reserva);
     }
 
     public void cancelarReserva(Reserva reserva) {
-        for (Reserva reservas : reader.listarReservas()) {
+        for (Reserva reservas : dao.listarReservas()) {
             if (reservas.equals(reserva)){
-                reader.listarReservas().remove(reserva);
+                dao.listarReservas().remove(reserva);
             }
         }
     }
