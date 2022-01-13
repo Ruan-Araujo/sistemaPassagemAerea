@@ -14,6 +14,17 @@ public class ReservaService {
     public ReservaService() {
         this.dao = DAOSingleton.INSTANCE.getReservasDAO();
     }
+    public void realizarReserva(Reserva reserva) {
+        dao.adicionarReserva(reserva);
+    }
+
+    public void cancelarReserva(Reserva reserva) {
+        for (Reserva reservas : dao.listarReservas()) {
+            if (reservas.equals(reserva)){
+                dao.listarReservas().remove(reserva);
+            }
+        }
+    }
 
     public List<Reserva> listarReserva(){
         return dao.listarReservas();

@@ -9,7 +9,7 @@ public class Users {
     private Integer id;
     private String nome;
     private String cpf;
-    List<Integer> reservasId = new ArrayList<>();
+    Reserva reserva;
 
     public Users(){}
 
@@ -31,12 +31,12 @@ public class Users {
         return cpf;
     }
 
-    public List<Integer> getReservasId() {
-        return reservasId;
+    public Reserva getReserva() {
+        return reserva;
     }
 
-    public void setReservasId(List<Integer> reservasId) {
-        this.reservasId = reservasId;
+    public void setReserva(Reserva reservas) {
+        this.reserva = reservas;
     }
 
     @Override

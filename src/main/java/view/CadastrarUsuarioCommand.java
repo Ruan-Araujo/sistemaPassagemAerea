@@ -1,19 +1,19 @@
 package view;
 
 import model.Users;
-import service.CadUsuarioService;
+import service.UsuarioService;
 import validation.NovoUsuarioValidation;
 
 import java.util.Scanner;
 
-public class CadUsuarioCommand implements Command{
-    private CadUsuarioService cadUsuarioService;
+public class CadastrarUsuarioCommand implements Command{
+    private UsuarioService usuarioService;
     private NovoUsuarioValidation novoUsuarioValidation;
     private Scanner sc = new Scanner(System.in);
 
 
-    public CadUsuarioCommand() {
-        this.cadUsuarioService = new CadUsuarioService();
+    public CadastrarUsuarioCommand() {
+        this.usuarioService = new UsuarioService();
         this.novoUsuarioValidation = new NovoUsuarioValidation();
     }
 
@@ -27,7 +27,7 @@ public class CadUsuarioCommand implements Command{
         Users users = new Users(5, nome, cpf);
         try {
             novoUsuarioValidation.valida(users);
-            cadUsuarioService.cadastrarUsuario(users);
+            usuarioService.cadastrarUsuario(users);
         } catch(RuntimeException e){
            e.printStackTrace();
         }
