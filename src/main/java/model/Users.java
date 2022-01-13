@@ -54,6 +54,6 @@ public class Users {
 
     @Override
     public String toString() {
-        return  "[ " + nome +  cpf + "]";
+        return  "[ " + nome + "," + cpf + "]";
     }
 }

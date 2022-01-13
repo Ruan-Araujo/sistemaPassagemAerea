@@ -9,7 +9,7 @@ public class UsuarioService {
 
     private UsuarioDAO dao;
 
-    public UsuarioService(UsuarioDAO dao) {
+    public UsuarioService() {
         this.dao = new UsuarioDAO();
     }
 

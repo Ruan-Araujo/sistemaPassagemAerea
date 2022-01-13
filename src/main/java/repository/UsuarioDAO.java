@@ -35,14 +35,17 @@ public class UsuarioDAO {
         return usersList;
     }
 
-    public Users adicionarUsuarios(Users users) {
+    public void adicionarUsuarios(Users users) {
         StringBuilder user = userToString(users);
         try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(USERS_PATH)))){
             bw.append(user);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return users;
+    }
+
+    public void deletarUsuario(Users users) {
+
     }
 
     private StringBuilder userToString(Users users){
@@ -50,8 +53,8 @@ public class UsuarioDAO {
         int id = users.getId();
         String nome = users.getNome();
         String cpf = users.getCpf();
-        user.append(id);
-        user.append(nome);
+        user.append(id).append(";");
+        user.append(nome).append(";");
         user.append(cpf);
         users.getReservasId().forEach(e -> user.append(e.toString()));
         return user;
