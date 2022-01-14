@@ -3,6 +3,7 @@ package view;
 import model.Users;
 import service.UsuarioService;
 import validation.NovoUsuarioValidation;
+import validation.UsuarioConectadoSingleton;
 
 import java.util.Scanner;
 
@@ -19,18 +20,20 @@ public class CadastrarUsuarioCommand implements Command{
 
     @Override
     public void execute() {
+        if (UsuarioConectadoSingleton.INSTANCE.isConectado()){
+            throw new RuntimeException("Você já está registrado!");
+        }
+        Integer userId = usuarioService.getIdIterator();
         System.out.println("Insira seu nome:");
         String nome = sc.nextLine();
         System.out.println("Insira seu CPF:");
         String cpf = sc.nextLine();
-        // get ID
-        Users users = new Users(5, nome, cpf);
+        Users users = new Users(userId, nome, cpf);
         try {
             novoUsuarioValidation.valida(users);
             usuarioService.cadastrarUsuario(users);
         } catch(RuntimeException e){
            e.printStackTrace();
         }
-
     }
 }

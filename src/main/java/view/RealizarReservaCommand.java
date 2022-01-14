@@ -40,7 +40,6 @@ public class RealizarReservaCommand implements Command {
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
-
     }
 
     public Reserva cadastrarReserva(Rotas rota) {
@@ -48,9 +47,10 @@ public class RealizarReservaCommand implements Command {
         String metodoDePagamento = sc.next();
         System.out.println("Insira a quantidade de passagens desejadas:");
         int quantidadePassagens = sc.nextInt();
-        Integer id = UsuarioConectadoSingleton.INSTANCE.getUserId();
-        Users users = usuarioService.getUserById(id);
-        return new Reserva(1, rota, metodoDePagamento, quantidadePassagens, users);
+        Integer reservaId = reservaService.getIdIterator();
+        Integer userid = UsuarioConectadoSingleton.INSTANCE.getUserId();
+        Users users = usuarioService.getUserById(userid);
+        return new Reserva(reservaId, rota, metodoDePagamento, quantidadePassagens, users);
     }
 }
 

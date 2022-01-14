@@ -13,12 +13,13 @@ public class ReservasDAO{
     private final String RESERVAS_PATH = "src/main/resources/reservas.txt";
     private RotasDAO rotas = new RotasDAO();
     private UsuarioService usuarioService = new UsuarioService();
+    private List<Reserva> reservasList;
 
     protected ReservasDAO() {
     }
 
     public List<Reserva> listarReservas() {
-        List<Reserva> reservasList = new ArrayList<>();
+        reservasList = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(RESERVAS_PATH)))) {
             String linha = br.readLine();
             while (linha != null) {
@@ -69,5 +70,22 @@ public class ReservasDAO{
         reservas.append(totalDePassagens).append(";");
         reservas.append(userId);
         return reservas;
+    }
+
+    public void deletarReserva(Reserva reserva) {
+        listarReservas();
+        limparArquivoTexto();
+        if (reservasList.size() != 1) {
+            reservasList.removeIf(e -> e.equals(reserva));
+            reservasList.forEach(this::adicionarReserva);
+        }
+    }
+
+    private void limparArquivoTexto(){
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(RESERVAS_PATH)))){
+            bw.append("");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

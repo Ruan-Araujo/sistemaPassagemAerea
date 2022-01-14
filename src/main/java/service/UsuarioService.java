@@ -35,28 +35,32 @@ public class UsuarioService {
         return usuarioJaCadastrado;
     }
 
-    public List<Users> listarUsuarios(){
-            return dao.listarUsuarios();
-        }
+    public List<Users> listarUsuarios() {
+        return dao.listarUsuarios();
+    }
 
-        public Users getUserById(Integer id){
-//            return dao.listarUsuarios().stream()
-//                    .filter(e -> Objects.equals(e.getId(), id))
-//                    .findFirst()
-//                    .orElse(null);
+    public Users getUserById(Integer id) {
+        return dao.listarUsuarios().stream()
+                .filter(e -> e.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 
-            for (Users user : dao.listarUsuarios()) {
-                if (user.getId() == id) {
-                    return user;
-                }
-            }
-            return null;
-        }
+    public Users getUserByCpf(String cpf) {
+        return dao.listarUsuarios().stream()
+                .filter(e -> e.getCpf().equals(cpf))
+                .findFirst()
+                .orElse(null);
+    }
 
-        public Users getUserByCpf(String cpf){
-            return dao.listarUsuarios().stream()
-                    .filter(e -> e.getCpf().equals(cpf))
-                    .findFirst()
-                    .orElse(null);
+    public Integer getIdIterator(){
+        List<Users> listaUsuarios = listarUsuarios();
+        int sizeUsuarios = listaUsuarios.size();
+        if (sizeUsuarios == 0){
+            return 1;
+        }else {
+            Integer id = listaUsuarios.get(sizeUsuarios - 1).getId() + 1;
+            return  id;
         }
+    }
 }

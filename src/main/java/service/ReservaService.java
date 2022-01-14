@@ -19,11 +19,7 @@ public class ReservaService {
     }
 
     public void cancelarReserva(Reserva reserva) {
-        for (Reserva reservas : dao.listarReservas()) {
-            if (reservas.equals(reserva)){
-                dao.listarReservas().remove(reserva);
-            }
-        }
+        dao.deletarReserva(reserva);
     }
 
     public List<Reserva> listarReserva(){
@@ -42,5 +38,16 @@ public class ReservaService {
                 .filter(e -> e.getUsuario().equals(user))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public Integer getIdIterator(){
+        List<Reserva> listaReserva = listarReserva();
+        int sizeReservas = listaReserva.size();
+        if (sizeReservas == 0){
+            return 1;
+        }else {
+            Integer id = listaReserva.get(sizeReservas - 1).getId() + 1;
+            return id;
+        }
     }
 }
