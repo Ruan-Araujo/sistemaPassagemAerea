@@ -40,22 +40,22 @@ public class UsuarioService {
         }
 
         public Users getUserById(Integer id){
-            return dao.listarUsuarios().stream()
-                    .filter(e -> Objects.equals(e.getId(), id))
-                    .findFirst()
-                    .orElse(null);
+//            return dao.listarUsuarios().stream()
+//                    .filter(e -> Objects.equals(e.getId(), id))
+//                    .findFirst()
+//                    .orElse(null);
 
-//            for (Users user : dao.listarUsuarios()) {
-//                if (user.getId().equals(id)) {
-//                    return user;
-//                }
-//            }
-//            return null;
+            for (Users user : dao.listarUsuarios()) {
+                if (user.getId() == id) {
+                    return user;
+                }
+            }
+            return null;
         }
 
-        public Users getUserByName(String nome){
+        public Users getUserByCpf(String cpf){
             return dao.listarUsuarios().stream()
-                    .filter(e -> e.getNome().equals(nome))
+                    .filter(e -> e.getCpf().equals(cpf))
                     .findFirst()
                     .orElse(null);
         }

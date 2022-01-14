@@ -48,7 +48,8 @@ public class RealizarReservaCommand implements Command {
         String metodoDePagamento = sc.next();
         System.out.println("Insira a quantidade de passagens desejadas:");
         int quantidadePassagens = sc.nextInt();
-        Users users = usuarioService.getUserById(UsuarioConectadoSingleton.INSTANCE.getUserId());
+        Integer id = UsuarioConectadoSingleton.INSTANCE.getUserId();
+        Users users = usuarioService.getUserById(id);
         return new Reserva(1, rota, metodoDePagamento, quantidadePassagens, users);
     }
 }

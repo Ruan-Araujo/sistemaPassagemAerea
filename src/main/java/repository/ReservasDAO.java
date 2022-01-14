@@ -15,16 +15,14 @@ public class ReservasDAO{
     private UsuarioService usuarioService = new UsuarioService();
 
     protected ReservasDAO() {
-        //this.usuarioService = new UsuarioService();
-        //this.rotas = new RotasDAO();
     }
 
     public List<Reserva> listarReservas() {
         List<Reserva> reservasList = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(RESERVAS_PATH)))) {
-            String reserva = br.readLine();
-            while (reserva != null) {
-                String[] dados = reserva.split(";");
+            String linha = br.readLine();
+            while (linha != null) {
+                String[] dados = linha.split(";");
                 Integer id = Integer.parseInt(dados[0]);
                 Integer idRota = Integer.parseInt(dados[1]);
                 Rotas rota = rotas.listarRotas().stream()
@@ -36,10 +34,10 @@ public class ReservasDAO{
                 Integer idUsuario = Integer.parseInt(dados[4]);
                 Users usuario = usuarioService.getUserById(idUsuario);
 
-                Reserva reservas = new Reserva(id, rota, metodoPagamento,
+                Reserva reserva = new Reserva(id, rota, metodoPagamento,
                         totalDePassagens, usuario);
-                reservasList.add(reservas);
-                reserva = br.readLine();
+                reservasList.add(reserva);
+                linha = br.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,13 +59,15 @@ public class ReservasDAO{
         StringBuilder reservas = new StringBuilder();
         Integer id = reserva.getId();
         Rotas rota = reserva.getRota();
+        Integer rotaId = rota.getId();
+        Integer userId = reserva.getUsuario().getId();
         String metodoPagamento = reserva.getMetodoPagamento();
         Integer totalDePassagens = reserva.getTotalDePassagens();
         reservas.append(id).append(";");
-        reservas.append(rota).append(";");
+        reservas.append(rotaId).append(";");
         reservas.append(metodoPagamento).append(";");
         reservas.append(totalDePassagens).append(";");
-        reservas.append(usuarioService.getUserById(reserva.getUsuario().getId()));
+        reservas.append(userId);
         return reservas;
     }
 }

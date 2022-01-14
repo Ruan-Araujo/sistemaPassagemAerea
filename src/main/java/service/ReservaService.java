@@ -39,7 +39,7 @@ public class ReservaService {
 
     public Reserva getReservaByUser(Users user){
         return dao.listarReservas().stream()
-                .filter(e -> e.equals(user))
+                .filter(e -> e.getUsuario().equals(user))
                 .findFirst()
                 .orElse(null);
     }

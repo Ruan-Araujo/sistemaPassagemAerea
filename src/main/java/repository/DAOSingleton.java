@@ -8,7 +8,6 @@ public class DAOSingleton {
 
 
     private DAOSingleton(){
-
     }
 
     public ReservasDAO getReservasDAO(){
