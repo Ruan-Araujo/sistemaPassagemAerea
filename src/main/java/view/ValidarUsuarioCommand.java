@@ -21,7 +21,7 @@ public class ValidarUsuarioCommand implements Command{
         Users users = new Users(0, null , cpf);
         try {
             usuarioValidation.valida(users);
-            UsuarioConectadoSingleton.INSTANCE.conectar();
+            UsuarioConectadoSingleton.INSTANCE.conectar(users.getId());
             System.out.println("Logado com sucesso!");
         } catch(RuntimeException e){
             e.printStackTrace();

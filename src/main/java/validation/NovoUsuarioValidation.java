@@ -16,7 +16,7 @@ public class NovoUsuarioValidation implements Validator{
                 .filter(e -> e.equals(user))
                 .findFirst()
                 .orElse(null);
-        if (user == null || usuarioCadastrado == null | UsuarioConectadoSingleton.INSTANCE.isConectado()){
+        if (user == null || usuarioCadastrado != null | UsuarioConectadoSingleton.INSTANCE.isConectado()){
             throw new ValidatorException("Erro ao cadastrar usuario, tente novamente!");
         }
     }

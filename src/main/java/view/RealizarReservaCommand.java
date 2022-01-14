@@ -2,8 +2,10 @@ package view;
 
 import model.Reserva;
 import model.Rotas;
+import model.Users;
 import service.ReservaService;
 import service.RotasService;
+import service.UsuarioService;
 import validation.RealizarReservaValidation;
 import validation.UsuarioConectadoSingleton;
 
@@ -14,11 +16,13 @@ public class RealizarReservaCommand implements Command {
     private ReservaService reservaService;
     private RotasService rotasService;
     private Scanner sc = new Scanner(System.in);
+    private UsuarioService usuarioService;
 
     public RealizarReservaCommand() {
         this.realizarReservaValidation = new RealizarReservaValidation();
         this.rotasService = new RotasService();
         this.reservaService = new ReservaService();
+        this.usuarioService = new UsuarioService();
     }
 
     @Override
@@ -41,10 +45,11 @@ public class RealizarReservaCommand implements Command {
 
     public Reserva cadastrarReserva(Rotas rota) {
         System.out.println("Insira o metodo de pagamento:");
-        String metodoDePagamento = sc.nextLine();
+        String metodoDePagamento = sc.next();
         System.out.println("Insira a quantidade de passagens desejadas:");
         int quantidadePassagens = sc.nextInt();
-        return new Reserva(1, rota, metodoDePagamento, quantidadePassagens);
+        Users users = usuarioService.getUserById(UsuarioConectadoSingleton.INSTANCE.getUserId());
+        return new Reserva(1, rota, metodoDePagamento, quantidadePassagens, users);
     }
 }
 

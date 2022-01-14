@@ -9,7 +9,6 @@ public class Users {
     private Integer id;
     private String nome;
     private String cpf;
-    Reserva reserva;
 
     public Users(){}
 
@@ -29,14 +28,6 @@ public class Users {
 
     public String getCpf() {
         return cpf;
-    }
-
-    public Reserva getReserva() {
-        return reserva;
-    }
-
-    public void setReserva(Reserva reservas) {
-        this.reserva = reservas;
     }
 
     @Override

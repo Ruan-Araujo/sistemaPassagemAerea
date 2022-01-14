@@ -21,6 +21,7 @@ public class CancelarReservaCommand implements Command {
         this.cancelarReservaValidation = new CancelarReservaValidation();
         this.rotasService = new RotasService();
         this.usuarioService = new UsuarioService();
+        this.reservaService = new ReservaService();
     }
 
     @Override
@@ -32,8 +33,8 @@ public class CancelarReservaCommand implements Command {
         Users users = usuarioService.getUserById(userId);
         try {
             cancelarReservaValidation.valida(users);
-            reservaService.cancelarReserva(users.getReserva());
-            System.out.println("Reserva realizada com sucesso!");
+            reservaService.cancelarReserva(reservaService.getReservaByUser(users));
+            System.out.println("Reserva cancelada com sucesso!");
         } catch (RuntimeException e) {
             e.printStackTrace();
         }

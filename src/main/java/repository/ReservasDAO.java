@@ -2,6 +2,9 @@ package repository;
 
 import model.Reserva;
 import model.Rotas;
+import model.Users;
+import service.UsuarioService;
+import validation.UsuarioConectadoSingleton;
 
 import java.io.*;
 import java.util.*;
@@ -9,8 +12,11 @@ import java.util.*;
 public class ReservasDAO{
     private final String RESERVAS_PATH = "src/main/resources/reservas.txt";
     private RotasDAO rotas = new RotasDAO();
+    private UsuarioService usuarioService = new UsuarioService();
 
     protected ReservasDAO() {
+        //this.usuarioService = new UsuarioService();
+        //this.rotas = new RotasDAO();
     }
 
     public List<Reserva> listarReservas() {
@@ -27,7 +33,11 @@ public class ReservasDAO{
                         .orElse(null);
                 String metodoPagamento = dados[2];
                 Integer totalDePassagens = Integer.parseInt(dados[3]);
-                Reserva reservas = new Reserva(id, rota, metodoPagamento, totalDePassagens);
+                Integer idUsuario = Integer.parseInt(dados[4]);
+                Users usuario = usuarioService.getUserById(idUsuario);
+
+                Reserva reservas = new Reserva(id, rota, metodoPagamento,
+                        totalDePassagens, usuario);
                 reservasList.add(reservas);
                 reserva = br.readLine();
             }
@@ -53,10 +63,11 @@ public class ReservasDAO{
         Rotas rota = reserva.getRota();
         String metodoPagamento = reserva.getMetodoPagamento();
         Integer totalDePassagens = reserva.getTotalDePassagens();
-        reservas.append(id);
-        reservas.append(rota);
-        reservas.append(metodoPagamento);
-        reservas.append(totalDePassagens);
+        reservas.append(id).append(";");
+        reservas.append(rota).append(";");
+        reservas.append(metodoPagamento).append(";");
+        reservas.append(totalDePassagens).append(";");
+        reservas.append(usuarioService.getUserById(reserva.getUsuario().getId()));
         return reservas;
     }
 }

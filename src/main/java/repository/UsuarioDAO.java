@@ -11,10 +11,10 @@ import java.util.stream.Collectors;
 
 public class UsuarioDAO {
     private final String USERS_PATH = "src/main/resources/users.txt";
-    private ReservasDAO reservasDAO;
+
 
     public UsuarioDAO() {
-        this.reservasDAO = new ReservasDAO();
+
     }
 
     public List<Users> listarUsuarios() {
@@ -27,12 +27,6 @@ public class UsuarioDAO {
                 String nome = dados.get(1);
                 String cpf = dados.get(2);
                 Users users = new Users(id, nome, cpf);
-                Integer idReservas = Integer.parseInt(dados.get(3));
-                Reserva reserva = reservasDAO.listarReservas().stream()
-                                .filter(e -> e.equals(new Reserva(idReservas)))
-                                .findFirst()
-                                .orElse(null);
-                users.setReservas(reserva);
                 usersList.add(users);
                 user = br.readLine();
             }
@@ -63,7 +57,6 @@ public class UsuarioDAO {
         user.append(id).append(";");
         user.append(nome).append(";");
         user.append(cpf);
-        user.append(users.getReservas());
         return user;
     }
 }

@@ -7,14 +7,17 @@ public class Reserva {
     private Rotas rota;
     private String metodoPagamento;
     private Integer totalDePassagens;
+    private Users usuario;
 
     public Reserva(){}
 
-    public Reserva(Integer id, Rotas rota, String metodoPagamento, Integer totalDePassagens) {
+    public Reserva(Integer id, Rotas rota, String metodoPagamento,
+                   Integer totalDePassagens, Users usuario) {
         this.id = id;
         this.rota = rota;
         this.metodoPagamento = metodoPagamento;
         this.totalDePassagens = totalDePassagens;
+        this.usuario = usuario;
     }
 
     public Reserva(Integer id) {
@@ -36,6 +39,12 @@ public class Reserva {
     public Integer getTotalDePassagens() {
         return totalDePassagens;
     }
+
+    public Users getUsuario() {
+        return usuario;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {

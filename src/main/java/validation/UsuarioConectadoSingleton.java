@@ -12,7 +12,8 @@ public class UsuarioConectadoSingleton {
         return isConectado;
     }
 
-    public void conectar(){
+    public void conectar(Integer userId){
+        this.userId = userId;
         this.isConectado = true;
     }
 

@@ -4,13 +4,14 @@ import model.Users;
 import repository.UsuarioDAO;
 
 import java.util.List;
+import java.util.Objects;
 
 public class UsuarioService {
 
-    private UsuarioDAO dao;
+    private UsuarioDAO dao = new UsuarioDAO();
 
     public UsuarioService() {
-        this.dao = new UsuarioDAO();
+        //this.dao = new UsuarioDAO();
     }
 
     public void cadastrarUsuario(Users user) {
@@ -40,9 +41,16 @@ public class UsuarioService {
 
         public Users getUserById(Integer id){
             return dao.listarUsuarios().stream()
-                    .filter(e -> e.getId().equals(id))
+                    .filter(e -> Objects.equals(e.getId(), id))
                     .findFirst()
                     .orElse(null);
+
+//            for (Users user : dao.listarUsuarios()) {
+//                if (user.getId().equals(id)) {
+//                    return user;
+//                }
+//            }
+//            return null;
         }
 
         public Users getUserByName(String nome){
