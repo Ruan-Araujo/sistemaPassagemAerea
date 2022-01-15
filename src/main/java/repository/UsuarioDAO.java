@@ -38,8 +38,9 @@ public class UsuarioDAO {
 
     public void adicionarUsuarios(Users users) {
         StringBuilder user = userToString(users);
-        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(USERS_PATH)))){
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(USERS_PATH, true)))){
             bw.append(user);
+            bw.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
