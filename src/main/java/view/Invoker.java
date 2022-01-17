@@ -14,6 +14,7 @@ public class Invoker {
         comandos.put(4, RealizarReservaCommand.class);
         comandos.put(5, CancelarReservaCommand.class);
         comandos.put(6, ListarReservaCommand.class);
+        comandos.put(7, DesconectarCommand.class);
 
     }
     

@@ -17,6 +17,11 @@ public class UsuarioConectadoSingleton {
         this.isConectado = true;
     }
 
+    public void desconectar(){
+        this.userId = null;
+        this.isConectado = false;
+    }
+
     public Integer getUserId() {
         return userId;
     }

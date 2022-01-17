@@ -11,6 +11,8 @@ public class NovoUsuarioValidation implements Validator{
 
     @Override
     public void valida(Object user){
+        Users usuarioFornecido = (Users) user;
+        String senha = usuarioFornecido.getSenha();
         List<Users> users = usuarioService.listarUsuarios();
         Users usuarioCadastrado = users.stream()
                 .filter(e -> e.equals(user))
@@ -18,6 +20,8 @@ public class NovoUsuarioValidation implements Validator{
                 .orElse(null);
         if (user == null || usuarioCadastrado != null | UsuarioConectadoSingleton.INSTANCE.isConectado()){
             throw new ValidatorException("Erro ao cadastrar usuario, tente novamente!");
+        }else if(senha.length() < 6 || senha.length() > 12){
+            throw new ValidatorException("Senha deve conter no mínimo seis caracteres e no maximo doze caracteres!");
         }
     }
 
