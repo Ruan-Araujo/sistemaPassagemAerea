@@ -1,4 +1,14 @@
+<<<<<<< HEAD
+1;ruan;2
+2;junior;3
+3;josualdo;4
+4;Pierre;6
+=======
 1;joao;123;123456
 2;pedro;13;123123123
+<<<<<<< HEAD
 3;Ruan;789;789456
 4;Junior];0145;067489
+=======
+>>>>>>> 8bb55a6b3dd9500104b4a0f6c2be2d89f820e9f9
+>>>>>>> 19412343177bddd398a28eddf7bfa067988d3da3
