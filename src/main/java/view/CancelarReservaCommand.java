@@ -1,12 +1,11 @@
 package view;
 
 import exception.ValidatorException;
-import model.Users;
+import model.Usuario;
 import service.ReservaService;
 import service.UsuarioService;
 import validation.CancelarReservaValidation;
-import validation.IsConectadoValidation;
-import validation.NotConectadoValidation;
+import validation.DesconectadoValidation;
 import validation.UsuarioConectadoSingleton;
 
 import java.util.Scanner;
@@ -16,23 +15,23 @@ public class CancelarReservaCommand implements Command {
     private ReservaService reservaService;
     private CancelarReservaValidation cancelarReservaValidation;
     private UsuarioService usuarioService;
-    private NotConectadoValidation notConectadoValidation;
+    private DesconectadoValidation desconectadoValidation;
 
     public CancelarReservaCommand() {
         this.cancelarReservaValidation = new CancelarReservaValidation();
         this.usuarioService = new UsuarioService();
         this.reservaService = new ReservaService();
-        this.notConectadoValidation = new NotConectadoValidation();
+        this.desconectadoValidation = new DesconectadoValidation();
     }
 
     @Override
     public void execute() {
         try {
-            notConectadoValidation.valida(null);
-            Integer userId = UsuarioConectadoSingleton.INSTANCE.getUserId();
-            Users users = usuarioService.getUserById(userId);
-            cancelarReservaValidation.valida(users);
-            reservaService.cancelarReserva(reservaService.getReservaByUser(users));
+            desconectadoValidation.valida(null);
+            Integer usuarioID = UsuarioConectadoSingleton.INSTANCE.getUsuarioId();
+            Usuario usuario = usuarioService.getUsuarioById(usuarioID);
+            cancelarReservaValidation.valida(usuario);
+            reservaService.cancelarReserva(reservaService.getReservaByUsuario(usuario));
             System.out.println("Reserva cancelada com sucesso!");
         } catch (ValidatorException e) {
             System.out.println(e.getMessage());

@@ -1,11 +1,10 @@
 package validation;
 
 import exception.ValidatorException;
-import model.Users;
+import model.Usuario;
 import service.ReservaService;
 
 public class ListarReservaValidation implements Validator {
-
     private ReservaService reservaService;
 
     public ListarReservaValidation() {
@@ -14,8 +13,8 @@ public class ListarReservaValidation implements Validator {
 
     @Override
     public void valida(Object object) throws ValidatorException {
-        Users users = (Users) object;
-        if (reservaService.getReservaByUser(users) == null) {
+        Usuario usuario = (Usuario) object;
+        if (reservaService.getReservaByUsuario(usuario) == null) {
             throw new ValidatorException("Reserva não encontrada, tente novamente!");
         }
     }

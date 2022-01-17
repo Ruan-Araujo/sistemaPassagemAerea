@@ -2,7 +2,7 @@ package repository;
 
 import model.Reserva;
 import model.Rotas;
-import model.Users;
+import model.Usuario;
 import service.UsuarioService;
 
 import java.io.*;
@@ -34,7 +34,7 @@ public class ReservasDAO{
                 String metodoPagamento = dados[2];
                 Integer totalDePassagens = Integer.parseInt(dados[3]);
                 Integer idUsuario = Integer.parseInt(dados[4]);
-                Users usuario = usuarioService.getUserById(idUsuario);
+                Usuario usuario = usuarioService.getUsuarioById(idUsuario);
 
                 Reserva reserva = new Reserva(id, rota, metodoPagamento,
                         totalDePassagens, usuario);
@@ -63,14 +63,14 @@ public class ReservasDAO{
         Integer id = reserva.getId();
         Rotas rota = reserva.getRota();
         Integer rotaId = rota.getId();
-        Integer userId = reserva.getUsuario().getId();
+        Integer usuarioId = reserva.getUsuario().getId();
         String metodoPagamento = reserva.getMetodoPagamento();
         Integer totalDePassagens = reserva.getTotalDePassagens();
         reservas.append(id).append(";");
         reservas.append(rotaId).append(";");
         reservas.append(metodoPagamento).append(";");
         reservas.append(totalDePassagens).append(";");
-        reservas.append(userId);
+        reservas.append(usuarioId);
         return reservas;
     }
 

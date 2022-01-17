@@ -1,6 +1,6 @@
 package validation;
-import exception.ValidatorException;
 
+import exception.ValidatorException;
 
 public class RealizarReservaValidation implements Validator{
     @Override

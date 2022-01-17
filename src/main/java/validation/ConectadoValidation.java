@@ -2,8 +2,7 @@ package validation;
 
 import exception.ValidatorException;
 
-public class IsConectadoValidation implements Validator{
-
+public class ConectadoValidation implements Validator{
 
     @Override
     public void valida(Object objeto) throws ValidatorException {

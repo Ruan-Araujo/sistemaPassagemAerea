@@ -1,7 +1,6 @@
 package validation;
 import exception.ValidatorException;
 
-
 public class RotaValidation implements Validator{
     @Override
     public void valida(Object rota) throws ValidatorException {;

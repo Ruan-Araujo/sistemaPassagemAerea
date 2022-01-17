@@ -1,21 +1,20 @@
 package view;
 
 import exception.ValidatorException;
-import validation.IsConectadoValidation;
-import validation.NotConectadoValidation;
+import validation.DesconectadoValidation;
 import validation.UsuarioConectadoSingleton;
 
 public class DesconectarCommand implements Command{
-    private NotConectadoValidation notConectadoValidation;
+    private DesconectadoValidation desconectadoValidation;
 
     public DesconectarCommand() {
-        this.notConectadoValidation = new NotConectadoValidation();
+        this.desconectadoValidation = new DesconectadoValidation();
     }
 
     @Override
     public void execute() {
         try {
-            notConectadoValidation.valida(null);
+            desconectadoValidation.valida(null);
             UsuarioConectadoSingleton.INSTANCE.desconectar();
             System.out.println("Desconectado com sucesso!");
         }catch (ValidatorException e){

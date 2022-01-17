@@ -1,24 +1,22 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-public class Users {
+public class Usuario {
 
     private Integer id;
     private String nome;
     private String cpf;
     private String senha;
 
-    public Users(){}
+    public Usuario(){}
 
-    public Users(String cpf, String senha) {
+    public Usuario(String cpf, String senha) {
         this.cpf = cpf;
         this.senha = senha;
     }
 
-    public Users(Integer id, String nome, String cpf, String senha) {
+    public Usuario(Integer id, String nome, String cpf, String senha) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -41,16 +39,12 @@ public class Users {
         return senha;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Users users = (Users) o;
-        return Objects.equals(cpf, users.cpf);
+        Usuario usuario = (Usuario) o;
+        return Objects.equals(cpf, usuario.cpf);
     }
 
     @Override

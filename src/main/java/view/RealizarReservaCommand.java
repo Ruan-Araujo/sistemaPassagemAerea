@@ -3,13 +3,12 @@ package view;
 import exception.ValidatorException;
 import model.Reserva;
 import model.Rotas;
-import model.Users;
+import model.Usuario;
 import service.ReservaService;
 import service.RotasService;
 import service.UsuarioService;
 import validation.*;
 
-import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class RealizarReservaCommand implements Command {
@@ -17,9 +16,9 @@ public class RealizarReservaCommand implements Command {
     private RotaValidation rotaValidation;
     private ReservaService reservaService;
     private RotasService rotasService;
-    private Scanner sc = new Scanner(System.in);
     private UsuarioService usuarioService;
-    private NotConectadoValidation notConectadoValidation;
+    private DesconectadoValidation desconectadoValidation;
+    private Scanner sc = new Scanner(System.in);
 
     public RealizarReservaCommand() {
         this.realizarReservaValidation = new RealizarReservaValidation();
@@ -27,13 +26,13 @@ public class RealizarReservaCommand implements Command {
         this.rotasService = new RotasService();
         this.reservaService = new ReservaService();
         this.usuarioService = new UsuarioService();
-        this.notConectadoValidation = new NotConectadoValidation();
+        this.desconectadoValidation = new DesconectadoValidation();
     }
 
     @Override
     public void execute() {
         try {
-            notConectadoValidation.valida(null);
+            desconectadoValidation.valida(null);
             System.out.println("Insira o ID da rota desejada:");
             int rotaId = sc.nextInt();
             Rotas rota = rotasService.getRotasById(rotaId);
@@ -53,9 +52,9 @@ public class RealizarReservaCommand implements Command {
         System.out.println("Insira a quantidade de passagens desejadas:");
         int quantidadePassagens = sc.nextInt();
         Integer reservaId = reservaService.getIdIterator();
-        Integer userid = UsuarioConectadoSingleton.INSTANCE.getUserId();
-        Users users = usuarioService.getUserById(userid);
-        Reserva reserva = new Reserva(reservaId, rota, metodoDePagamento, quantidadePassagens, users);
+        Integer usuarioId = UsuarioConectadoSingleton.INSTANCE.getUsuarioId();
+        Usuario usuario = usuarioService.getUsuarioById(usuarioId);
+        Reserva reserva = new Reserva(reservaId, rota, metodoDePagamento, quantidadePassagens, usuario);
         System.out.println("Valor total: " + reserva.getValorTotal());
         System.out.println("Deseja confirmar a compra? Pressione Y para confirmar!");
         if (sc.next().equalsIgnoreCase("y")){

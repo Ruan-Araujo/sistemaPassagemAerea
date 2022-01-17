@@ -8,13 +8,13 @@ public class Reserva {
     private Rotas rota;
     private String metodoPagamento;
     private Integer totalDePassagens;
-    private Users usuario;
+    private Usuario usuario;
     private BigDecimal valorTotal;
 
     public Reserva(){}
 
     public Reserva(Integer id, Rotas rota, String metodoPagamento,
-                   Integer totalDePassagens, Users usuario) {
+                   Integer totalDePassagens, Usuario usuario) {
         this.id = id;
         this.rota = rota;
         this.metodoPagamento = metodoPagamento;
@@ -53,7 +53,7 @@ public class Reserva {
         return totalDePassagens;
     }
 
-    public Users getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 

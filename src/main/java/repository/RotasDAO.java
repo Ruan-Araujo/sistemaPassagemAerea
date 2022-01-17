@@ -34,10 +34,4 @@ public class RotasDAO {
         }
         return rotasList;
     }
-
-    public void deletarRota(){
-
-    }
-
-
 }

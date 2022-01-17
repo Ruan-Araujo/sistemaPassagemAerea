@@ -1,9 +1,9 @@
 package view;
 
 import exception.ValidatorException;
-import model.Users;
+import model.Usuario;
 import service.UsuarioService;
-import validation.IsConectadoValidation;
+import validation.ConectadoValidation;
 import validation.UsuarioConectadoSingleton;
 import validation.UsuarioValidation;
 
@@ -12,35 +12,35 @@ import java.util.Scanner;
 public class ValidarUsuarioCommand implements Command {
     private UsuarioValidation usuarioValidation;
     private UsuarioService usuarioService;
-    private IsConectadoValidation isConectadoValidation;
+    private ConectadoValidation conectadoValidation;
     private Scanner sc = new Scanner(System.in);
 
     public ValidarUsuarioCommand() {
         this.usuarioValidation = new UsuarioValidation();
         this.usuarioService = new UsuarioService();
-        this.isConectadoValidation = new IsConectadoValidation();
+        this.conectadoValidation = new ConectadoValidation();
     }
 
     @Override
     public void execute() {
         try {
-            isConectadoValidation.valida(null);
-            Users users = cadastrarUsuario();
-            usuarioValidation.valida(users);
-            Integer userId = usuarioService.getUserByCpf(users.getCpf()).getId();
-            UsuarioConectadoSingleton.INSTANCE.conectar(userId);
+            conectadoValidation.valida(null);
+            Usuario usuario = cadastrarUsuario();
+            usuarioValidation.valida(usuario);
+            Integer usuarioId = usuarioService.getUsuarioByCpf(usuario.getCpf()).getId();
+            UsuarioConectadoSingleton.INSTANCE.conectar(usuarioId);
             System.out.println("Logado com sucesso!");
         } catch (ValidatorException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public Users cadastrarUsuario() {
+    public Usuario cadastrarUsuario() {
         System.out.println("Insira seu CPF:");
         String cpf = sc.nextLine();
         System.out.println("Insira sua senha:");
         String senha = sc.nextLine();
-        Users users = new Users(cpf, senha);
-        return users;
+        Usuario usuario = new Usuario(cpf, senha);
+        return usuario;
     }
 }

@@ -3,7 +3,7 @@ package validation;
 public class UsuarioConectadoSingleton {
     public static final UsuarioConectadoSingleton INSTANCE = new UsuarioConectadoSingleton();
     private boolean isConectado;
-    private Integer userId;
+    private Integer usuarioId;
 
     private UsuarioConectadoSingleton(){
     }
@@ -12,17 +12,17 @@ public class UsuarioConectadoSingleton {
         return isConectado;
     }
 
-    public void conectar(Integer userId){
-        this.userId = userId;
+    public void conectar(Integer usuarioId){
+        this.usuarioId = usuarioId;
         this.isConectado = true;
     }
 
     public void desconectar(){
-        this.userId = null;
+        this.usuarioId = null;
         this.isConectado = false;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getUsuarioId() {
+        return usuarioId;
     }
 }

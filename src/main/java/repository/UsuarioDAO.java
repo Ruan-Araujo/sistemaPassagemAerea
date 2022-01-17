@@ -1,6 +1,6 @@
 package repository;
 
-import model.Users;
+import model.Usuario;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -8,11 +8,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UsuarioDAO {
-    private final String USERS_PATH = "src/main/resources/users.txt";
+    private final String USUARIOS_PATH = "src/main/resources/usuarios.txt";
 
-    public List<Users> listarUsuarios() {
-        List<Users> usersList = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(USERS_PATH)))) {
+    public List<Usuario> listarUsuarios() {
+        List<Usuario> usuarios = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(USUARIOS_PATH)))) {
             String user = br.readLine();
             while (user != null) {
                 List<String> dados = Arrays.asList(user.split(";"));
@@ -20,40 +20,40 @@ public class UsuarioDAO {
                 String nome = dados.get(1);
                 String cpf = dados.get(2);
                 String senha = dados.get(3);
-                Users users = new Users(id, nome, cpf, senha);
-                usersList.add(users);
+                Usuario usuario = new Usuario(id, nome, cpf, senha);
+                usuarios.add(usuario);
                 user = br.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return usersList;
+        return usuarios;
     }
 
-    public void adicionarUsuarios(Users users) {
-        StringBuilder user = userToString(users);
-        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(USERS_PATH, true)))){
-            bw.append(user);
+    public void adicionarUsuarios(Usuario usuario) {
+        StringBuilder usuarioString = usuarioToString(usuario);
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(USUARIOS_PATH, true)))){
+            bw.append(usuarioString);
             bw.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void deletarUsuario(Users users) {
+    public void deletarUsuario(Usuario usuario) {
 
     }
 
-    private StringBuilder userToString(Users users){
-        StringBuilder user = new StringBuilder();
-        int id = users.getId();
-        String nome = users.getNome();
-        String cpf = users.getCpf();
-        String senha = users.getSenha();
-        user.append(id).append(";");
-        user.append(nome).append(";");
-        user.append(cpf).append(";");
-        user.append(senha);
-        return user;
+    private StringBuilder usuarioToString(Usuario usuario){
+        StringBuilder usuarioString = new StringBuilder();
+        int id = usuario.getId();
+        String nome = usuario.getNome();
+        String cpf = usuario.getCpf();
+        String senha = usuario.getSenha();
+        usuarioString.append(id).append(";");
+        usuarioString.append(nome).append(";");
+        usuarioString.append(cpf).append(";");
+        usuarioString.append(senha);
+        return usuarioString;
     }
 }

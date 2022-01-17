@@ -1,13 +1,12 @@
 package service;
 
 import model.Reserva;
-import model.Users;
+import model.Usuario;
 import repository.ReservasDAO;
 
 import java.util.List;
 
 public class ReservaService {
-
     private ReservasDAO reservasDAO;
 
     public ReservaService() {
@@ -33,9 +32,9 @@ public class ReservaService {
                 .orElse(null);
     }
 
-    public Reserva getReservaByUser(Users user){
+    public Reserva getReservaByUsuario(Usuario usuario){
         return reservasDAO.listarReservas().stream()
-                .filter(e -> e.getUsuario().equals(user))
+                .filter(e -> e.getUsuario().equals(usuario))
                 .findFirst()
                 .orElse(null);
     }

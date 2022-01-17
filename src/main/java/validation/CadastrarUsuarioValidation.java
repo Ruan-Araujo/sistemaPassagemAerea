@@ -1,21 +1,20 @@
 package validation;
 
-import model.Users;
+import model.Usuario;
 import service.UsuarioService;
 
 import exception.ValidatorException;
-import java.util.List;
 
-public class NovoUsuarioValidation implements Validator{
+public class CadastrarUsuarioValidation implements Validator{
     private UsuarioService usuarioService = new UsuarioService();
 
     @Override
-    public void valida(Object user){
-        Users usuarioFornecido = (Users) user;
+    public void valida(Object usuario){
+        Usuario usuarioFornecido = (Usuario) usuario;
         String senha = usuarioFornecido.getSenha();
-        Users usuarioCadastrado = usuarioService.getUserByCpf(usuarioFornecido.getCpf());
+        Usuario usuarioCadastrado = usuarioService.getUsuarioByCpf(usuarioFornecido.getCpf());
 
-        if (user == null || usuarioCadastrado != null | UsuarioConectadoSingleton.INSTANCE.isConectado()){
+        if (usuario == null || usuarioCadastrado != null | UsuarioConectadoSingleton.INSTANCE.isConectado()){
             throw new ValidatorException("Erro ao cadastrar usuario, tente novamente!");
         }else if(senha.length() < 6 || senha.length() > 12){
             throw new ValidatorException("Senha deve conter no mínimo seis caracteres e no maximo doze caracteres!");

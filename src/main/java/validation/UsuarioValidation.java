@@ -1,18 +1,20 @@
 package validation;
 
-import model.Users;
+import model.Usuario;
 import service.UsuarioService;
 import exception.ValidatorException;
 
-import java.util.List;
-
 public class UsuarioValidation implements Validator{
-    private UsuarioService usuarioService = new UsuarioService();
+    private UsuarioService usuarioService;
+
+    public UsuarioValidation() {
+        this.usuarioService = new UsuarioService();
+    }
 
     @Override
-    public void valida(Object user) {
-        Users usuarioFornecido = (Users) user;
-        Users usuarioCadastrado = usuarioService.getUserByCpf(usuarioFornecido.getCpf());
+    public void valida(Object usuario) {
+        Usuario usuarioFornecido = (Usuario) usuario;
+        Usuario usuarioCadastrado = usuarioService.getUsuarioByCpf(usuarioFornecido.getCpf());
         if (usuarioFornecido == null || usuarioCadastrado == null || UsuarioConectadoSingleton.INSTANCE.isConectado()
         || !usuarioFornecido.getSenha().equals(usuarioCadastrado.getSenha())){
             throw new ValidatorException("Erro ao validar usuario, tente novamente!");
