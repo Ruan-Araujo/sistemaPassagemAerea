@@ -1,21 +1,14 @@
 package repository;
 
-import model.Reserva;
 import model.Users;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class UsuarioDAO {
     private final String USERS_PATH = "src/main/resources/users.txt";
-
-
-    public UsuarioDAO() {
-
-    }
 
     public List<Users> listarUsuarios() {
         List<Users> usersList = new ArrayList<>();

@@ -1,11 +1,8 @@
 package view;
 
-import java.util.Scanner;
-
 public class Main {
 
     public static void main(String[] args) {
-
         OpcoesView opcoes = new OpcoesView();
 
         System.out.println("Bem vindo a AeroFive pacotes de viagens!!");

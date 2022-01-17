@@ -4,18 +4,19 @@ import model.Reserva;
 import model.Rotas;
 import model.Users;
 import service.UsuarioService;
-import validation.UsuarioConectadoSingleton;
 
 import java.io.*;
 import java.util.*;
 
 public class ReservasDAO{
     private final String RESERVAS_PATH = "src/main/resources/reservas.txt";
-    private RotasDAO rotas = new RotasDAO();
-    private UsuarioService usuarioService = new UsuarioService();
+    private RotasDAO rotas;
+    private UsuarioService usuarioService;
     private List<Reserva> reservasList;
 
-    protected ReservasDAO() {
+    public ReservasDAO() {
+        this.rotas = new RotasDAO();
+        this.usuarioService = new UsuarioService();
     }
 
     public List<Reserva> listarReservas() {
@@ -48,8 +49,9 @@ public class ReservasDAO{
 
     public Reserva adicionarReserva(Reserva reserva) {
         StringBuilder reservas = reservasToString(reserva);
-        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(RESERVAS_PATH)))){
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(RESERVAS_PATH, true)))){
             bw.append(reservas);
+            bw.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -3,8 +3,7 @@ package view;
 import service.RotasService;
 
 public class ListarRotasCommand implements Command{
-
-    RotasService rotasService = new RotasService();
+    private RotasService rotasService = new RotasService();
 
     @Override
     public void execute() {

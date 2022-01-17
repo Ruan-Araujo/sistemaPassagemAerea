@@ -1,12 +1,12 @@
 package validation;
-import Exception.ValidatorException;
+import exception.ValidatorException;
 
 
 public class RealizarReservaValidation implements Validator{
     @Override
-    public void valida(Object rota) throws ValidatorException {;
-        if (rota == null ){
-            throw new ValidatorException("Rota não encontrada, tente novamente!");
+    public void valida(Object reserva) throws ValidatorException {;
+        if (reserva == null ){
+            throw new ValidatorException("Compra cancelada com sucesso!");
         }
     }
 }

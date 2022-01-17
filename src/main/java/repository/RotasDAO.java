@@ -1,6 +1,5 @@
 package repository;
 
-import model.Reserva;
 import model.Rotas;
 
 import java.io.BufferedReader;

@@ -1,1 +1,2 @@
-2;2;boleto;5;1
+2;4;Cartao;5;3
+3;3;Boleto;10;1

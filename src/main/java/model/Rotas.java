@@ -30,6 +30,10 @@ public class Rotas {
         return nome;
     }
 
+    public BigDecimal getValor() {
+        return valor;
+    }
+
     @Override
     public String toString() {
         return "Id = "+ id + " | " + nome + " | Valor = " + valor + " | Data de ida =  " + dataDeIda + " | Data de volta = "+ dataDeVolta;

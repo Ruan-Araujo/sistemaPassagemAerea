@@ -3,7 +3,7 @@ package validation;
 import model.Users;
 import service.UsuarioService;
 
-import Exception.ValidatorException;
+import exception.ValidatorException;
 import java.util.List;
 
 public class NovoUsuarioValidation implements Validator{
@@ -13,11 +13,8 @@ public class NovoUsuarioValidation implements Validator{
     public void valida(Object user){
         Users usuarioFornecido = (Users) user;
         String senha = usuarioFornecido.getSenha();
-        List<Users> users = usuarioService.listarUsuarios();
-        Users usuarioCadastrado = users.stream()
-                .filter(e -> e.equals(user))
-                .findFirst()
-                .orElse(null);
+        Users usuarioCadastrado = usuarioService.getUserByCpf(usuarioFornecido.getCpf());
+
         if (user == null || usuarioCadastrado != null | UsuarioConectadoSingleton.INSTANCE.isConectado()){
             throw new ValidatorException("Erro ao cadastrar usuario, tente novamente!");
         }else if(senha.length() < 6 || senha.length() > 12){

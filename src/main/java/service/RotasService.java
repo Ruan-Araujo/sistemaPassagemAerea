@@ -3,30 +3,28 @@ package service;
 import model.Rotas;
 import repository.RotasDAO;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class RotasService{
-
-    private RotasDAO dao;
+    private RotasDAO rotasDAO;
 
     public RotasService() {
-        this.dao = new RotasDAO();
+        this.rotasDAO = new RotasDAO();
     }
 
     public List<Rotas> listarRotas(){
-        return dao.listarRotas();
+        return rotasDAO.listarRotas();
     }
 
     public Rotas getRotasById(Integer id){
-        return dao.listarRotas().stream()
+        return rotasDAO.listarRotas().stream()
                 .filter(e -> e.getId().equals(id))
                 .findFirst()
                 .orElse(null);
     }
 
     public Rotas getRotasByUser(String name){
-        return dao.listarRotas().stream()
+        return rotasDAO.listarRotas().stream()
                 .filter(e -> e.getNome().equals(name))
                 .findFirst()
                 .orElse(null);

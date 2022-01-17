@@ -1,5 +1,6 @@
 package model;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Reserva {
@@ -8,6 +9,7 @@ public class Reserva {
     private String metodoPagamento;
     private Integer totalDePassagens;
     private Users usuario;
+    private BigDecimal valorTotal;
 
     public Reserva(){}
 
@@ -18,10 +20,21 @@ public class Reserva {
         this.metodoPagamento = metodoPagamento;
         this.totalDePassagens = totalDePassagens;
         this.usuario = usuario;
+        this.valorTotal = setValorTotal();
     }
 
     public Reserva(Integer id) {
         this.id = id;
+    }
+
+    public BigDecimal getValorTotal() {
+        return valorTotal;
+    }
+
+    private BigDecimal setValorTotal() {
+        BigDecimal quantPassagens = new BigDecimal(totalDePassagens);
+        BigDecimal valorUnitario = rota.getValor();
+        return quantPassagens.multiply(valorUnitario);
     }
 
     public Integer getId() {
@@ -43,8 +56,6 @@ public class Reserva {
     public Users getUsuario() {
         return usuario;
     }
-
-
 
     @Override
     public boolean equals(Object o) {

@@ -1,6 +1,6 @@
 package validation;
 
-import Exception.ValidatorException;
+import exception.ValidatorException;
 import model.Users;
 import service.ReservaService;
 

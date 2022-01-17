@@ -13,6 +13,11 @@ public class Users {
 
     public Users(){}
 
+    public Users(String cpf, String senha) {
+        this.cpf = cpf;
+        this.senha = senha;
+    }
+
     public Users(Integer id, String nome, String cpf, String senha) {
         this.id = id;
         this.nome = nome;
