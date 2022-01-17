@@ -11,6 +11,7 @@ public class OpcoesView {
         System.out.println("3 - Listar Rotas");
         System.out.println("4 - Realizar Reserva");
         System.out.println("5 - Cancelar Reserva");
+        System.out.println("6 - Visualizar Reserva");
         System.out.println("0 - Cancelar\n");
         int opcao = sc.nextInt();
         aplicaOpcoes(opcao);

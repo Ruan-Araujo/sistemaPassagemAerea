@@ -58,4 +58,13 @@ public class Reserva {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public String toString() {
+        return "\bReserva" +
+                "\nId = " + id +
+                "\nRota = " + rota +
+                "\nMetodo de Pagamento = " + metodoPagamento +
+                "\nTotal de Passagens = " + totalDePassagens;
+    }
 }

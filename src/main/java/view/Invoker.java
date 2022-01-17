@@ -13,6 +13,8 @@ public class Invoker {
         comandos.put(3, ListarRotasCommand.class);
         comandos.put(4, RealizarReservaCommand.class);
         comandos.put(5, CancelarReservaCommand.class);
+        comandos.put(6, ListarReservaCommand.class);
+
     }
     
     public static void invoke(int command){

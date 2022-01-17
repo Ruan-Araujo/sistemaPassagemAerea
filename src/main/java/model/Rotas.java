@@ -32,6 +32,6 @@ public class Rotas {
 
     @Override
     public String toString() {
-        return "["+ id + "," + nome + ", " + valor + ", " + dataDeIda + ", "+ dataDeVolta + "]";
+        return "Id = "+ id + " | " + nome + " | Valor = " + valor + " | Data de ida =  " + dataDeIda + " | Data de volta = "+ dataDeVolta;
     }
 }
