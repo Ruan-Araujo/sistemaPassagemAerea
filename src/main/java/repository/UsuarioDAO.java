@@ -26,7 +26,8 @@ public class UsuarioDAO {
                 int id = Integer.parseInt(dados.get(0));
                 String nome = dados.get(1);
                 String cpf = dados.get(2);
-                Users users = new Users(id, nome, cpf);
+                String senha = dados.get(3);
+                Users users = new Users(id, nome, cpf, senha);
                 usersList.add(users);
                 user = br.readLine();
             }
@@ -55,9 +56,11 @@ public class UsuarioDAO {
         int id = users.getId();
         String nome = users.getNome();
         String cpf = users.getCpf();
+        String senha = users.getSenha();
         user.append(id).append(";");
         user.append(nome).append(";");
-        user.append(cpf);
+        user.append(cpf).append(";");
+        user.append(senha);
         return user;
     }
 }

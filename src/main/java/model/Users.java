@@ -9,13 +9,15 @@ public class Users {
     private Integer id;
     private String nome;
     private String cpf;
+    private String senha;
 
     public Users(){}
 
-    public Users(Integer id, String nome, String cpf) {
+    public Users(Integer id, String nome, String cpf, String senha) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
+        this.senha = senha;
     }
 
     public Integer getId() {
@@ -28,6 +30,14 @@ public class Users {
 
     public String getCpf() {
         return cpf;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     @Override

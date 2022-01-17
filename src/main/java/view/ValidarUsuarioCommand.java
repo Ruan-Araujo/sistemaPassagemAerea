@@ -21,7 +21,10 @@ public class ValidarUsuarioCommand implements Command{
     public void execute() {
         System.out.println("Insira seu CPF:");
         String cpf = sc.nextLine();
+        System.out.println("Insira sua senha:");
+        String senha = sc.nextLine();
         Users users = usuarioService.getUserByCpf(cpf);
+        users.setSenha(senha);
         try {
             usuarioValidation.valida(users);
             UsuarioConectadoSingleton.INSTANCE.conectar(users.getId());

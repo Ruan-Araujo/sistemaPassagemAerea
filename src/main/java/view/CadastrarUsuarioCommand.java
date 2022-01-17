@@ -28,10 +28,13 @@ public class CadastrarUsuarioCommand implements Command{
         String nome = sc.nextLine();
         System.out.println("Insira seu CPF:");
         String cpf = sc.nextLine();
-        Users users = new Users(userId, nome, cpf);
+        System.out.println("Insira sua senha:");
+        String senha = sc.nextLine();
+        Users users = new Users(userId, nome, cpf, senha);
         try {
             novoUsuarioValidation.valida(users);
             usuarioService.cadastrarUsuario(users);
+            System.out.println("Usuario cadastrado com sucesso!");
         } catch(RuntimeException e){
            e.printStackTrace();
         }
