@@ -44,4 +44,8 @@ public class UsuarioService {
             return id;
         }
     }
+
+    public void deletarUsuario(Usuario usuario) {
+        usuarioDAO.deletarUsuario(usuario);
+    }
 }

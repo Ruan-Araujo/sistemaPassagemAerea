@@ -9,9 +9,10 @@ import java.util.List;
 
 public class UsuarioDAO {
     private final String USUARIOS_PATH = "src/main/resources/usuarios.txt";
+    private List<Usuario> usuarios;
 
     public List<Usuario> listarUsuarios() {
-        List<Usuario> usuarios = new ArrayList<>();
+        usuarios = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(USUARIOS_PATH)))) {
             String user = br.readLine();
             while (user != null) {
@@ -41,7 +42,20 @@ public class UsuarioDAO {
     }
 
     public void deletarUsuario(Usuario usuario) {
+        listarUsuarios();
+        limparArquivoTexto();
+        if (listarUsuarios().size() != 1) {
+            usuarios.removeIf(e -> e.equals(usuario));
+            usuarios.forEach(this::adicionarUsuarios);
+        }
+    }
 
+    private void limparArquivoTexto(){
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(USUARIOS_PATH)))){
+            bw.append("");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private StringBuilder usuarioToString(Usuario usuario){

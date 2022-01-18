@@ -8,11 +8,12 @@ public class OpcoesView {
     public void listaOpcoes() {
         System.out.println("1 - Login");
         System.out.println("2 - Registrar");
-        System.out.println("3 - Listar Rotas");
-        System.out.println("4 - Realizar Reserva");
-        System.out.println("5 - Cancelar Reserva");
-        System.out.println("6 - Visualizar Reserva");
-        System.out.println("7 - Desconectar");
+        System.out.println("3 - Deletar conta");
+        System.out.println("4 - Listar Rotas");
+        System.out.println("5 - Realizar Reserva");
+        System.out.println("6 - Cancelar Reserva");
+        System.out.println("7 - Visualizar Reserva");
+        System.out.println("8 - Desconectar");
         System.out.println("0 - Sair\n");
         int opcao = sc.nextInt();
         aplicaOpcoes(opcao);
