@@ -15,7 +15,6 @@ public class Main {
                 "                      `---~~\\___________/------------`````\n" +
                 "                      =  ===(_________D");
         System.out.println();
-        System.out.println("O que você deseja fazer? ");
         opcoes.listaOpcoes();
     }
 }

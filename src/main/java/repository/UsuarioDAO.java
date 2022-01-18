@@ -42,11 +42,11 @@ public class UsuarioDAO {
     }
 
     public void deletarUsuario(Usuario usuario) {
-        listarUsuarios();
+        List<Usuario> usuariosList = listarUsuarios();
         limparArquivoTexto();
-        if (listarUsuarios().size() != 1) {
-            usuarios.removeIf(e -> e.equals(usuario));
-            usuarios.forEach(this::adicionarUsuarios);
+        if (usuariosList.size() != 1) {
+            usuariosList.removeIf(e -> e.equals(usuario));
+            usuariosList.forEach(this::adicionarUsuarios);
         }
     }
 
