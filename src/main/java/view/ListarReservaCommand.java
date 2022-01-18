@@ -31,7 +31,7 @@ public class ListarReservaCommand implements Command {
     public void execute() {
         try {
             desconectadoValidation.valida(null);
-            Integer userId = UsuarioConectadoSingleton.INSTANCE.getUserId();
+            Integer userId = UsuarioConectadoSingleton.INSTANCE.getUsuarioId();
             Usuario usuario = usuarioService.getUsuarioById(userId);
             listarReservaValidation.valida(usuario);
             System.out.println(reservaService.getReservaByUsuario(usuario));

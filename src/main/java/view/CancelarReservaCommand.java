@@ -1,6 +1,7 @@
 package view;
 
 import exception.ValidatorException;
+import model.Reserva;
 import model.Usuario;
 import service.ReservaService;
 import service.UsuarioService;
@@ -30,8 +31,9 @@ public class CancelarReservaCommand implements Command {
             desconectadoValidation.valida(null);
             Integer usuarioID = UsuarioConectadoSingleton.INSTANCE.getUsuarioId();
             Usuario usuario = usuarioService.getUsuarioById(usuarioID);
-            cancelarReservaValidation.valida(usuario);
-            reservaService.cancelarReserva(reservaService.getReservaByUsuario(usuario));
+//            cancelarReservaValidation.valida(usuario);
+            Reserva reserva = reservaService.getReservaByUsuario(usuario);
+            reservaService.cancelarReserva(reserva);
             System.out.println("Reserva cancelada com sucesso!");
         } catch (ValidatorException e) {
             System.out.println(e.getMessage());

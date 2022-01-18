@@ -1,9 +1,7 @@
 package view;
 
 import exception.ValidatorException;
-import model.Reserva;
-import model.Rotas;
-import model.Usuario;
+import model.*;
 import service.ReservaService;
 import service.RotasService;
 import service.UsuarioService;
@@ -18,6 +16,7 @@ public class RealizarReservaCommand implements Command {
     private RotasService rotasService;
     private UsuarioService usuarioService;
     private DesconectadoValidation desconectadoValidation;
+    private UsuarioReservaValidation usuarioReservaValidation;
     private Scanner sc = new Scanner(System.in);
 
     public RealizarReservaCommand() {
@@ -27,12 +26,16 @@ public class RealizarReservaCommand implements Command {
         this.reservaService = new ReservaService();
         this.usuarioService = new UsuarioService();
         this.desconectadoValidation = new DesconectadoValidation();
+        this.usuarioReservaValidation = new UsuarioReservaValidation();
     }
 
     @Override
     public void execute() {
         try {
             desconectadoValidation.valida(null);
+            Integer usuarioId = UsuarioConectadoSingleton.INSTANCE.getUsuarioId();
+            Usuario usuario = usuarioService.getUsuarioById(usuarioId);
+            usuarioReservaValidation.valida(usuario);
             System.out.println("Insira o ID da rota desejada:");
             int rotaId = sc.nextInt();
             Rotas rota = rotasService.getRotasById(rotaId);
@@ -47,10 +50,12 @@ public class RealizarReservaCommand implements Command {
     }
 
     public Reserva cadastrarReserva(Rotas rota) {
-        System.out.println("Insira o metodo de pagamento:");
-        String metodoDePagamento = sc.next();
         System.out.println("Insira a quantidade de passagens desejadas:");
         int quantidadePassagens = sc.nextInt();
+        String metodoDePagamento = selecionarMetodoDePagamento();
+        if (metodoDePagamento == null){
+            return null;
+        }
         Integer reservaId = reservaService.getIdIterator();
         Integer usuarioId = UsuarioConectadoSingleton.INSTANCE.getUsuarioId();
         Usuario usuario = usuarioService.getUsuarioById(usuarioId);
@@ -61,6 +66,20 @@ public class RealizarReservaCommand implements Command {
             return reserva;
         }else {
             return null;
+        }
+    }
+
+    public String selecionarMetodoDePagamento(){
+        System.out.println("Insira o metodo de pagamento:");
+        System.out.println("1 - Boleto \n2 - Cartão");
+        switch (sc.nextInt()){
+            case 1:
+                return "Boleto";
+            case 2:
+                return "Cartão";
+            default:
+                System.out.println("Opção inexistente, tente novamente!");
+                return null;
         }
     }
 }
