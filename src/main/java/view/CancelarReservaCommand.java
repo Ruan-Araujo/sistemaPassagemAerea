@@ -31,7 +31,7 @@ public class CancelarReservaCommand implements Command {
             desconectadoValidation.valida(null);
             Integer usuarioID = UsuarioConectadoSingleton.INSTANCE.getUsuarioId();
             Usuario usuario = usuarioService.getUsuarioById(usuarioID);
-//            cancelarReservaValidation.valida(usuario);
+            cancelarReservaValidation.valida(usuario);
             Reserva reserva = reservaService.getReservaByUsuario(usuario);
             reservaService.cancelarReserva(reserva);
             System.out.println("Reserva cancelada com sucesso!");

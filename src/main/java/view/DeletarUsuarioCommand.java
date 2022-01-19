@@ -9,11 +9,13 @@ public class DeletarUsuarioCommand implements Command{
     private UsuarioService usuarioService;
     private DesconectadoValidation desconectadoValidation;
     private DeletarUsuarioValidation deletarUsuarioValidation;
+    private CancelarReservaCommand cancelarReservaCommand;
 
     public DeletarUsuarioCommand() {
         this.usuarioService = new UsuarioService();
         this.desconectadoValidation= new DesconectadoValidation();
         this.deletarUsuarioValidation = new DeletarUsuarioValidation();
+        this.cancelarReservaCommand = new CancelarReservaCommand();
     }
 
     @Override
@@ -23,6 +25,7 @@ public class DeletarUsuarioCommand implements Command{
             Usuario usuarioConectado = usuarioService.getUsuarioById(usuarioId);
             desconectadoValidation.valida(null);
             deletarUsuarioValidation.valida(usuarioConectado);
+            cancelarReservaCommand.execute();
             usuarioService.deletarUsuario(usuarioConectado);
             UsuarioConectadoSingleton.INSTANCE.desconectar();
             System.out.println("Conta excluida com sucesso!");
