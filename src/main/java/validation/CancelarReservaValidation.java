@@ -14,7 +14,7 @@ public class CancelarReservaValidation implements Validator {
     @Override
     public void valida(Object object) throws ValidatorException {
         Usuario usuario = (Usuario) object;
-        if (reservaService.getReservaByUsuario(usuario) == null) {
+        if (reservaService.getReservasByUsuario(usuario).size() == 0) {
             throw new ValidatorException("Reserva não encontrada, tente novamente!");
         }
     }

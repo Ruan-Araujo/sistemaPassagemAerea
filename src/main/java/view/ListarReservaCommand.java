@@ -34,7 +34,7 @@ public class ListarReservaCommand implements Command {
             Integer userId = UsuarioConectadoSingleton.INSTANCE.getUsuarioId();
             Usuario usuario = usuarioService.getUsuarioById(userId);
             listarReservaValidation.valida(usuario);
-            System.out.println(reservaService.getReservaByUsuario(usuario));
+            reservaService.getReservasByUsuario(usuario).forEach(System.out::println);
         } catch (ValidatorException e) {
             System.out.println(e.getMessage());;
         }

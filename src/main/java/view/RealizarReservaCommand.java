@@ -16,7 +16,6 @@ public class RealizarReservaCommand implements Command {
     private RotasService rotasService;
     private UsuarioService usuarioService;
     private DesconectadoValidation desconectadoValidation;
-    private UsuarioReservaValidation usuarioReservaValidation;
     private Scanner sc = new Scanner(System.in);
 
     public RealizarReservaCommand() {
@@ -26,16 +25,12 @@ public class RealizarReservaCommand implements Command {
         this.reservaService = new ReservaService();
         this.usuarioService = new UsuarioService();
         this.desconectadoValidation = new DesconectadoValidation();
-        this.usuarioReservaValidation = new UsuarioReservaValidation();
     }
 
     @Override
     public void execute() {
         try {
             desconectadoValidation.valida(null);
-            Integer usuarioId = UsuarioConectadoSingleton.INSTANCE.getUsuarioId();
-            Usuario usuario = usuarioService.getUsuarioById(usuarioId);
-            usuarioReservaValidation.valida(usuario);
             System.out.println("Insira o ID da rota desejada:");
             int rotaId = sc.nextInt();
             Rotas rota = rotasService.getRotasById(rotaId);

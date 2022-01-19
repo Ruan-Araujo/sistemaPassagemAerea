@@ -13,7 +13,7 @@ public class OpcoesView {
         System.out.println("| 4 - Listar Rotas           |");
         System.out.println("| 5 - Realizar Reserva       |");
         System.out.println("| 6 - Cancelar Reserva       |");
-        System.out.println("| 7 - Visualizar Reserva     |");
+        System.out.println("| 7 - Visualizar Reservas    |");
         System.out.println("| 8 - Desconectar            |");
         System.out.println("| 0 - Sair                   |");
         System.out.println("------------------------------\n");

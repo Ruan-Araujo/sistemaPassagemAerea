@@ -72,10 +72,9 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return "\bReserva" +
-                "\nId = " + id +
+        return  "\nId = " + id +
                 "\nRota = " + rota +
                 "\nMetodo de Pagamento = " + metodoPagamento +
-                "\nTotal de Passagens = " + totalDePassagens;
+                "\nTotal de Passagens = " + totalDePassagens + "\n";
     }
 }

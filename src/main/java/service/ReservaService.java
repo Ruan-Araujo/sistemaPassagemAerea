@@ -5,6 +5,7 @@ import model.Usuario;
 import repository.ReservasDAO;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ReservaService {
     private ReservasDAO reservasDAO;
@@ -21,22 +22,26 @@ public class ReservaService {
         reservasDAO.deletarReserva(reserva);
     }
 
+    public void cancelarReservasByUsuario(Usuario usuario) {
+        List<Reserva> reservas = getReservasByUsuario(usuario);
+        reservas.forEach(e -> reservasDAO.deletarReserva(e));
+    }
+
     public List<Reserva> listarReserva(){
         return reservasDAO.listarReservas();
     }
 
-    public Reserva getReservaById(Integer id){
-        return reservasDAO.listarReservas().stream()
+    public Reserva getReservaById(Integer id, Usuario usuario){
+        return getReservasByUsuario(usuario).stream()
                 .filter(e -> e.getId().equals(id))
                 .findFirst()
                 .orElse(null);
     }
 
-    public Reserva getReservaByUsuario(Usuario usuario){
+    public List<Reserva> getReservasByUsuario(Usuario usuario){
         return reservasDAO.listarReservas().stream()
                 .filter(e -> e.getUsuario().equals(usuario))
-                .findFirst()
-                .orElse(null);
+                .collect(Collectors.toList());
     }
 
     public Integer getIdIterator(){

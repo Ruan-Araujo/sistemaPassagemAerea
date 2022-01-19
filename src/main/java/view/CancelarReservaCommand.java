@@ -9,6 +9,8 @@ import validation.CancelarReservaValidation;
 import validation.DesconectadoValidation;
 import validation.UsuarioConectadoSingleton;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class CancelarReservaCommand implements Command {
@@ -32,9 +34,17 @@ public class CancelarReservaCommand implements Command {
             Integer usuarioID = UsuarioConectadoSingleton.INSTANCE.getUsuarioId();
             Usuario usuario = usuarioService.getUsuarioById(usuarioID);
             cancelarReservaValidation.valida(usuario);
-            Reserva reserva = reservaService.getReservaByUsuario(usuario);
-            reservaService.cancelarReserva(reserva);
-            System.out.println("Reserva cancelada com sucesso!");
+            List<Reserva> reservas = reservaService.getReservasByUsuario(usuario);
+            reservas.forEach(System.out::println);
+            System.out.println("Insira o ID da reserva que deseja cancelar:");
+            Integer reservaId = sc.nextInt();
+            Reserva reserva = reservaService.getReservaById(reservaId, usuario);
+            if (reserva == null){
+                System.out.println("Reserva não encontrada");
+            }else {
+                reservaService.cancelarReserva(reserva);
+                System.out.println("Reserva cancelada com sucesso!");
+            }
         } catch (ValidatorException e) {
             System.out.println(e.getMessage());
         }

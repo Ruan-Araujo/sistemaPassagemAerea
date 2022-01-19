@@ -14,6 +14,7 @@ public class DeletarUsuarioValidation implements Validator{
     @Override
     public void valida(Object objeto) throws ValidatorException {
         Usuario usuarioFornecido = (Usuario) objeto;
+        System.out.println("Ao deletar a conta todas suas reservas seram canceladas, deseja continuar?");
         System.out.println("Digite sua senha para apagar conta: ");
         String senha = input.next();
 
